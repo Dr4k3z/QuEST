@@ -1,0 +1,60 @@
+[build-system]
+requires = ["scikit-build-core>=0.10"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "quest-rmt"
+version = "0.1.0"
+description = "High-performance QuEST implementation for covariance shrinkage"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "QuEST Contributors" }
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: C++",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = []
+
+[tool.scikit-build]
+cmake.build-type = "Release"
+wheel.packages = ["src/quest"]
+
+[tool.scikit-build.sdist]
+include = [
+  "CMakeLists.txt",
+  "cpp/**",
+  "src/**",
+  "docs/**",
+  "extern/nanobind/**",
+  "README.md",
+  "LICENSE",
+  "pyproject.toml",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+extend-select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ty]
+
+[tool.ty.environment]
+root = ["./src", "."]
+python = ".venv/bin/python"
+
+# [tool.ty.rules]
+# unresolved-import = "ignore"

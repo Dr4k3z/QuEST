@@ -10,6 +10,7 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development.Module)
 add_subdirectory(extern/nanobind)
 
 nanobind_add_module(_quest_core cpp/module.cpp)
+target_include_directories(_quest_core PRIVATE extern/eigen)
 install(
     TARGETS _quest_core
     LIBRARY DESTINATION quest

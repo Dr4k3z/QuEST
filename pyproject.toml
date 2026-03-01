@@ -21,7 +21,10 @@ classifiers = [
   "Programming Language :: C++",
   "Topic :: Scientific/Engineering :: Mathematics",
 ]
-dependencies = []
+dependencies = [
+    "numpy>=1.24",
+    "pytest>=9.0.2",
+]
 
 [tool.scikit-build]
 cmake.build-type = "Release"
@@ -34,6 +37,7 @@ include = [
   "src/**",
   "docs/**",
   "extern/nanobind/**",
+  "extern/eigen/**",
   "README.md",
   "LICENSE",
   "pyproject.toml",
@@ -58,3 +62,8 @@ python = ".venv/bin/python"
 
 # [tool.ty.rules]
 # unresolved-import = "ignore"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["extern", "build", "cmake-build-debug", ".venv", "_skbuild"]
+addopts = "-ra"

@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "QuEST"
+version = "0.1.0"
+description = "..."
+# readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+lint.extend-select = ["E", "F", "I", "UP", "B"]
+lint.ignore = ["E501"]
+lint.fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint.isort]
+# known-first-party = ["covShrinkage"]
+
+[tool.ty]
+
+[tool.ty.environment]
+# mypy_path = "src"
+# (ty can auto-detect src layouts, but making it explicit is fine)
+root = ["./src", "."]
+
+# python_executable = ".venv/bin/python"
+# (ty accepts either a venv dir or an interpreter path)
+python = ".venv/bin/python"
+
+[tool.ty.terminal]
+# strict = true (approx): fail CI if there are any warnings too
+error-on-warning = true
+
+[tool.ty.rules]
+# ignore_missing_imports = true  (closest analogue)
+unresolved-import = "ignore"
+
+# warn_unused_ignores = true
+unused-ignore-comment = "warn"
+
+# warn_redundant_casts = true
+redundant-cast = "warn"
